@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-// import contentful from 'contentful'
-
 const contentful = require('contentful')
 
 
@@ -11,7 +9,8 @@ const client = contentful.createClient({
 
 
 function Image() {
-    const [imageInfo, setImageInfo] = useState({})
+    const [imageInfo, setImageInfo] = useState() 
+
 
     useEffect(() => {
         async function getImageInfo() {
@@ -19,32 +18,21 @@ function Image() {
             setImageInfo(results)
         }
         getImageInfo()
-        console.log("here")
-
-        console.log("there")
-        // console.log(imageInfo, "image")
-
-        // console.log(result)
     }, [])
-// console.log(getAsset)
-// console.log("hello")
-// console.log(imageInfo, "image")
+    
+    // Need a loading state while the promise resolves
+    if (!imageInfo) {
+        return "Loading...";
+      }
 
-// console.log(result, "result")
-
-
-//    let imgURL = getAsset()
-    // console.log(getAsset())
-    // getAsset()
-
+    const imageURLSmall = `${imageInfo.fields.file.url}?w=100&h=100`
 
     return (
         <div>
-        <h2>Image</h2>
-        {/* <img src={imageInfo.fields.file.url} alt="pic"/> */}
+            <h2>Image</h2>
+            <img src={imageURLSmall} alt="pic"/> 
         </div>
-
-    )
+    )     
 }
 
 export default Image
