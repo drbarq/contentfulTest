@@ -1,3 +1,7 @@
+
+"https://contentfulimages.s3.us-east-2.amazonaws.com/hero-image-banner+copy+FINAL+v2+HQ.jpg"
+
+
 import React, { useEffect, useState } from 'react'
 const contentful = require('contentful')
 
@@ -24,6 +28,8 @@ function Image() {
       }
 
     const imageURLSmall = `${imageInfo.fields.file.url}?w=500&h=500`
+
+    const heroImage = ""
 
     return (
         <div>
